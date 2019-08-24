@@ -1,10 +1,9 @@
 import mongodb from 'mongodb'
 import consts from '../const'
-
-const MongoClient = mongodb.MongoClient
+import insert from './insert'
 
 function conn (callback) {
-  MongoClient.connect(consts.DB_URL, { useNewUrlParser: true }).then((db) => {
+  mongodb.MongoClient.connect(consts.DB_URL, { useNewUrlParser: true }).then((db) => {
     const dbo = db.db(consts.DB_NAME)
     callback(db, dbo)
   }, error => {
@@ -12,5 +11,7 @@ function conn (callback) {
     console.log('error', error)
   })
 }
+
+insert(conn)
 
 export default conn

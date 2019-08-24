@@ -1,5 +1,5 @@
 import express from 'express'
-// import conn from './db'
+import conn from './db'
 
 const app = express()
 
