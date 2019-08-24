@@ -1,4 +1,7 @@
 import express from 'express'
+import { conn } from './db'
+
+conn().then(() => console.log('数据库能够正常连接。'))
 
 const app = express()
 
