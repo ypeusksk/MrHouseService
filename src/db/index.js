@@ -1,5 +1,5 @@
 import mongodb from 'mongodb'
-import consts from '../const'
+import consts from '../consts'
 import insert from './insert'
 
 function conn (callback) {
