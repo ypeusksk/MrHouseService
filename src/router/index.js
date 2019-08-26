@@ -1,4 +1,5 @@
 import user from '../controller/user'
+import wx from '../controller/wx'
 import BodyParser from 'body-parser'
 
 function router (app) {
@@ -19,10 +20,7 @@ function router (app) {
 
   var urlencodedParser = BodyParser.urlencoded({ extended: false })
   app.post('/login', urlencodedParser, user.login)
-
-  app.use('/test', function (req, res) {
-    res.send('test')
-  })
+  app.post('/call/:access_token/:env/:name', urlencodedParser, wx.call)
 }
 
 export default router
