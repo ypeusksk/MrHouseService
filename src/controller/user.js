@@ -10,7 +10,7 @@ function login (req, res) {
       res.send(response.data)
     })
   }, () => {
-    res.send('Invalid user or password')
+    res.send({ errmsg: 'Invalid user or password' })
   })
 }
 

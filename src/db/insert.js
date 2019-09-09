@@ -1,6 +1,6 @@
 const admin = {
   username: 'mrhouseadmin',
-  password: 'e10adc3949ba59abbe56e057f20f883e'
+  password: 'e10adc3949ba59abbe56e057f20f883e' // 123456
 }
 function startInsert (db, dbo) {
   dbo.collection('user').insertOne(admin, (err, res) => {
