@@ -46,7 +46,7 @@ function getSucaiList (accessToken) {
   const body = {
     type: 'news',
     offset: 0,
-    count: 20
+    count: 5
   }
   const url = `https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=${accessToken}`
   return axios.post(url, body).then(response => {
