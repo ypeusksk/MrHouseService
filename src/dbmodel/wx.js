@@ -37,7 +37,7 @@ function getNewGZHAccessToken () {
   const { APPID, SECRET } = consts.WX_GZH_LOGIN
   const url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${SECRET}`
   return axios.get(url).then(response => {
-    console.log(response.data)
+    return response.data.access_token
   })
 }
 
