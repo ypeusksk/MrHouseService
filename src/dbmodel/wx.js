@@ -2,7 +2,7 @@ import fs from 'fs'
 import axios from 'axios'
 import consts from '../consts'
 
-// 从本地存储中获取一个旧的公众号
+// 从本地存储中获取一个旧的公众号access_token
 function getOldGZHAccessToken () {
   return new Promise((resolve, reject) => {
     fs.readFile('src/db/wx.json', (error, res) => {
@@ -32,7 +32,7 @@ function saveGZHAccessToken (accessToken) {
   })
 }
 
-// 获取公众号的一个新的access_token
+// 获取一个新的公众号access_token
 function getNewGZHAccessToken () {
   const { APPID, SECRET } = consts.WX_GZH_LOGIN
   const url = `https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${APPID}&secret=${SECRET}`
@@ -41,6 +41,7 @@ function getNewGZHAccessToken () {
   })
 }
 
+// 获取素材列表
 function getSucaiList (accessToken) {
   // body的格式具体要看公众号文档
   const body = {
@@ -50,10 +51,7 @@ function getSucaiList (accessToken) {
   }
   const url = `https://api.weixin.qq.com/cgi-bin/material/batchget_material?access_token=${accessToken}`
   return axios.post(url, body).then(response => {
-    console.log(response.data)
     return response.data
-  }, error => {
-    console.error('error', error)
   })
 }
 
