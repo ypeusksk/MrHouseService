@@ -1,3 +1,4 @@
 import user from './user'
+import wx from './wx'
 
-export { user }
+export { user, wx }

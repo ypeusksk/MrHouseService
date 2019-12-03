@@ -22,6 +22,7 @@ function router (app) {
 
   app.post('/login', urlencodedParser, user.login)
   app.post('/call/access_token/:access_token/env/:env/name/:name', urlencodedParser, wx.call)
+  app.get('/getSucaiList', wx.getSucaiList)
 }
 
 export default router
