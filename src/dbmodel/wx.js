@@ -2,32 +2,45 @@ import fs from 'fs'
 import axios from 'axios'
 import consts from '../consts'
 
-// 从本地存储中获取一个旧的公众号access_token
-function getOldGZHAccessToken () {
+function getWX () {
   return new Promise((resolve, reject) => {
     fs.readFile('src/db/wx.json', (error, res) => {
       if (error) {
         reject(error)
       } else {
-        const wx = JSON.parse(res.toString())
-        resolve(wx.GZHAccessToken)
+        const model = JSON.parse(res.toString())
+        resolve(model)
       }
+    })
+  })
+}
+
+function setWX (model) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile('src/db/wx.json', JSON.stringify(model), (error, res) => {
+      error ? reject(error) : resolve()
+    })
+  })
+}
+
+// 从本地存储中获取一个旧的公众号access_token
+function getOldGZHAccessToken () {
+  return new Promise((resolve, reject) => {
+    getWX().then(wx => {
+      resolve(wx.GZHAccessToken)
     })
   })
 }
 
 function saveGZHAccessToken (accessToken) {
   return new Promise((resolve, reject) => {
-    fs.readFile('src/db/wx.json', (error, res) => {
-      if (error) {
+    getWX().then(wx => {
+      wx.GZHAccessToken = accessToken
+      setWX(wx).then(() => {
+        resolve()
+      }, error => {
         reject(error)
-      } else {
-        const wx = JSON.parse(res.toString())
-        wx.GZHAccessToken = accessToken
-        fs.writeFile('src/db/wx.json', JSON.stringify(wx), (error, res) => {
-          error ? reject(error) : resolve()
-        })
-      }
+      })
     })
   })
 }

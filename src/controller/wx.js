@@ -17,7 +17,7 @@ function getSucaiList (req, res) {
         wx.getNewGZHAccessToken().then(newGZHAccessToken => {
           wx.getSucaiList(newGZHAccessToken).then(data => {
             if (data.errcode) {
-              res.send()
+              res.send({})
             } else {
               wx.saveGZHAccessToken(newGZHAccessToken)
               res.send(data)

@@ -1,6 +1,7 @@
 import { user } from '../dbmodel'
 import axios from 'axios'
 import consts from '../consts'
+import md5 from 'js-md5'
 
 function login (req, res) {
   const { username, password } = req.body
@@ -14,4 +15,19 @@ function login (req, res) {
   })
 }
 
-export default { login }
+function updatePassword (req, res) {
+  const { username, password, newPassword } = req.body
+  console.log('req.body', req.body)
+  user.checkUsernamePassword(username, password).then(() => {
+    const md5NewPassword = md5(newPassword)
+    user.updatePassword(md5NewPassword).then(() => {
+      res.send({})
+    }, error => {
+      res.send({ errmsg: error })
+    })
+  }, () => {
+    res.send({ errmsg: 'Invalid user or password' })
+  })
+}
+
+export default { login, updatePassword }
