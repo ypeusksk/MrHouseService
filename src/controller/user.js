@@ -17,7 +17,6 @@ function login (req, res) {
 
 function updatePassword (req, res) {
   const { username, password, newPassword } = req.body
-  console.log('req.body', req.body)
   user.checkUsernamePassword(username, password).then(() => {
     const md5NewPassword = md5(newPassword)
     user.updatePassword(md5NewPassword).then(() => {
