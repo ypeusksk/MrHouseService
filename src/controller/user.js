@@ -11,7 +11,7 @@ function login (req, res) {
       res.send(response.data)
     })
   }, () => {
-    res.send({ errmsg: 'Invalid user or password' })
+    res.send({ errmsg: '用户或密码错误' })
   })
 }
 
@@ -25,7 +25,7 @@ function updatePassword (req, res) {
       res.send({ errmsg: error })
     })
   }, () => {
-    res.send({ errmsg: 'Invalid user or password' })
+    res.send({ errmsg: '用户或密码错误' })
   })
 }
 
