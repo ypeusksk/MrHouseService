@@ -1,9 +1,11 @@
 import user from '../controller/user'
 import wx from '../controller/wx'
 import BodyParser from 'body-parser'
+import consts from '../consts'
 
 function router (app) {
   app.all('*', (req, res, next) => {
+    console.log('listent')
     const { origin, Origin, referer, Referer } = req.headers
     const allowOrigin = origin || Origin || referer || Referer || '*'
     res.header('Access-Control-Allow-Origin', allowOrigin)
