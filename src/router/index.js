@@ -5,7 +5,7 @@ import consts from '../consts'
 
 function router (app) {
   app.all('*', (req, res, next) => {
-    console.log('listent')
+    consts.LOG && console.log('listent')
     const { origin, Origin, referer, Referer } = req.headers
     const allowOrigin = origin || Origin || referer || Referer || '*'
     res.header('Access-Control-Allow-Origin', allowOrigin)
