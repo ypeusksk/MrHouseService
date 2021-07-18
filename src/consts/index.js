@@ -1,5 +1,5 @@
 export default {
-  LOG: true,
+  LOG: false,
   DB_NAME: 'MrHouse',
   DB_URL: 'mongodb://localhost:27017/MrHouse',
   WX_LOGIN: {
